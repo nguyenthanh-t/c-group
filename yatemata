@@ -1,1 +1,34 @@
-yahharo-
+#include <stdio.h>
+
+#define MAX_ENEMIES 5
+
+typedef struct {
+    int x;
+    int y;
+} GameObject;
+
+void draw(GameObject player, GameObject enemies[], int num_enemies) {
+    printf("Player: (%d, %d)\n", player.x, player.y);
+    for (int i = 0; i < num_enemies; i++) {
+        printf("Enemy %d: (%d, %d)\n", i+1, enemies[i].x, enemies[i].y);
+    }
+}
+
+void shoot(GameObject *player, GameObject *enemy) {
+    printf("Player shoots an enemy!\n");
+    enemy->x = -1;
+    enemy->y = -1;
+}
+
+int main() {
+    GameObject player = {0, 0};
+    GameObject enemies[MAX_ENEMIES] = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
+
+    draw(player, enemies, MAX_ENEMIES);
+
+    shoot(&player, &enemies[0]);
+
+    draw(player, enemies, MAX_ENEMIES);
+
+    return 0;
+}
